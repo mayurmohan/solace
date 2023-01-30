@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ComponentMetadata ComponentId="ctype::Adapter/cname::SolaceEventAdapter/vendor::SAP/version::1.0" ComponentName="SolaceEventAdapter" UIElementType="Adapter" IsExtension="false" IsFinal="true" IsPreserves="true" IsDefaultGenerator="true" ComponentDisplayName="SolaceEventAdapter" xmlns:gen="http://www.sap.hci.adk.com/gen" xmlns:bp="http://www.adk.gen/xmlns/blueprint">
+    <Variant VariantName="Solace Event Adapter Component Sender" VariantId="ctype::AdapterVariant/cname::SolaceEventAdapter/vendor::SAP/tp::solaceevent/mp::solaceevent/direction::Sender" MetadataVersion="2.0" gen:RuntimeComponentBaseUri="solaceevent" AttachmentBehavior="Preserve">
+        <InputContent Cardinality="1" Scope="outsidepool" MessageCardinality="1" isStreaming="false">
+            <Content>
+                <ContentType>Any</ContentType>
+                <Schema xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></Schema>
+            </Content>
+        </InputContent>
+        <OutputContent Cardinality="1" Scope="outsidepool" MessageCardinality="1" isStreaming="false">
+            <Content>
+                <ContentType>Any</ContentType>
+                <Schema xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></Schema>
+            </Content>
+        </OutputContent>
+        <Tab id="connection">
+            <GuiLabels guid="bb9ef47f-be57-4454-bd09-ce31fb13ea56">
+                <Label language="EN">Connection</Label>
+                <Label language="DE">Connection</Label>
+            </GuiLabels>
+          
+            <AttributeGroup id="SolaceEventAdapterEndpoint">
+                <Name xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Solace Event Adapter Endpoint</Name>
+                <GuiLabels guid="5479f49f-7d06-4368-b57a-b8ce922a85e6">
+                    <Label language="EN">Solace Event Adapter Endpoint</Label>
+                    <Label language="DE">Solace Event Adapter Endpoint</Label>
+                </GuiLabels>
+                <AttributeReference>
+                    <ReferenceName>topic</ReferenceName>
+                    <description>Configure Topic</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>vmr</ReferenceName>
+                    <description>Configure Vmr</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>solaceHost</ReferenceName>
+                    <description>Configure Solace Host</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>queue</ReferenceName>
+                    <description>Configure Queue</description>
+                </AttributeReference>
+            </AttributeGroup>
+            <AttributeGroup id="ScheduledPollConsumer">
+                <Name xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Scheduled Poll Consumer</Name>
+                <GuiLabels guid="ebdfd5e0-a256-4af5-954b-e75c73fde38a">
+                    <Label language="EN">Scheduled Poll Consumer</Label>
+                    <Label language="DE">Scheduled Poll Consumer</Label>
+                </GuiLabels>
+                <AttributeReference>
+                    <ReferenceName>backoffMultiplier</ReferenceName>
+                    <description>Configure Backoff Multiplier</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>sendEmptyMessageWhenIdle</ReferenceName>
+                    <description>Configure Send Empty Message When Idle</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>initialDelay</ReferenceName>
+                    <description>Configure Initial Delay</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>backoffIdleThreshold</ReferenceName>
+                    <description>Configure Backoff Idle Threshold</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>useFixedDelay</ReferenceName>
+                    <description>Configure Use Fixed Delay</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>delay</ReferenceName>
+                    <description>Configure Delay</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>startScheduler</ReferenceName>
+                    <description>Configure Start Scheduler</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>runLoggingLevel</ReferenceName>
+                    <description>Configure Run Logging Level</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>backoffErrorThreshold</ReferenceName>
+                    <description>Configure Backoff Error Threshold</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>greedy</ReferenceName>
+                    <description>Configure Greedy</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>timeUnit</ReferenceName>
+                    <description>Configure Time Unit</description>
+                </AttributeReference>
+            </AttributeGroup>
+        </Tab>
+    </Variant>
+    <Variant VariantName="Solace Event Adapter Component Receiver" VariantId="ctype::AdapterVariant/cname::SolaceEventAdapter/vendor::SAP/tp::solaceevent/mp::solaceevent/direction::Receiver" IsRequestResponse="true" MetadataVersion="2.0" gen:RuntimeComponentBaseUri="solaceevent" AttachmentBehavior="Preserve">
+        <InputContent Cardinality="1" Scope="outsidepool" MessageCardinality="1" isStreaming="false">
+            <Content>
+                <ContentType>Any</ContentType>
+                <Schema xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></Schema>
+            </Content>
+        </InputContent>
+        <OutputContent Cardinality="1" Scope="outsidepool" MessageCardinality="1" isStreaming="false">
+            <Content>
+                <ContentType>Any</ContentType>
+                <Schema xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></Schema>
+            </Content>
+        </OutputContent>
+        <Tab id="connection">
+            <GuiLabels guid="6950c620-1d19-4aa8-8004-a0596081f0c5">
+                <Label language="EN">Connection</Label>
+                <Label language="DE">Connection</Label>
+            </GuiLabels>
+            <AttributeGroup id="defaultUriParameter">
+                <Name xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">URI Setting</Name>
+                <GuiLabels guid="79915147-1359-4564-8034-dde40aab3df7">
+                    <Label language="EN">URI Setting</Label>
+                    <Label language="DE">URI Setting</Label>
+                </GuiLabels>
+                <AttributeReference>
+                    <ReferenceName>firstUriPart</ReferenceName>
+                    <description>Configure First URI Part</description>
+                </AttributeReference>
+            </AttributeGroup>
+            <AttributeGroup id="SolaceEventAdapterEndpoint">
+                <Name xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Solace Event Adapter Endpoint</Name>
+                <GuiLabels guid="8fb75034-6c23-41f0-a5f4-2872e0e1d8f5">
+                    <Label language="EN">Solace Event Adapter Endpoint</Label>
+                    <Label language="DE">Solace Event Adapter Endpoint</Label>
+                </GuiLabels>
+                <AttributeReference>
+                    <ReferenceName>topic</ReferenceName>
+                    <description>Configure Topic</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>vmr</ReferenceName>
+                    <description>Configure Vmr</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>solaceHost</ReferenceName>
+                    <description>Configure Solace Host</description>
+                </AttributeReference>
+                <AttributeReference>
+                    <ReferenceName>queue</ReferenceName>
+                    <description>Configure Queue</description>
+                </AttributeReference>
+            </AttributeGroup>
+        </Tab>
+    </Variant>
+    <AttributeMetadata>
+        <Name>firstUriPart</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:string</DataType>
+        <Default></Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="c968c6dc-5e8b-4791-8c04-e05fca5e3145">
+            <Label language="EN">First URI Part</Label>
+            <Label language="DE">First URI Part</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>topic</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:string</DataType>
+        <Default></Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="0564c0ad-1b8b-4316-a0de-4d42b286d5a5">
+            <Label language="EN">Topic</Label>
+            <Label language="DE">Topic</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>vmr</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:string</DataType>
+        <Default></Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="d02d07f4-c105-43df-9f95-99a4534afeae">
+            <Label language="EN">Vmr</Label>
+            <Label language="DE">Vmr</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>solaceHost</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:string</DataType>
+        <Default></Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="3b00efdb-8f1e-442e-95a3-0a02eda46fff">
+            <Label language="EN">Solace Host</Label>
+            <Label language="DE">Solace Host</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>queue</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:string</DataType>
+        <Default></Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="bb5297a3-bc54-4204-9fb4-ff3c10187766">
+            <Label language="EN">Queue</Label>
+            <Label language="DE">Queue</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>backoffMultiplier</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:integer</DataType>
+        <Default></Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="f12213a8-fb36-463b-8168-fb6a89537d04">
+            <Label language="EN">Backoff Multiplier</Label>
+            <Label language="DE">Backoff Multiplier</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>sendEmptyMessageWhenIdle</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:boolean</DataType>
+        <Default></Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="f02dc84d-cb53-4c36-bf4b-869c4af159f7">
+            <Label language="EN">Send Empty Message When Idle</Label>
+            <Label language="DE">Send Empty Message When Idle</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>initialDelay</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:long</DataType>
+        <Default>1000</Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="9adeadc2-f146-4f4d-b13d-022f834ff9bb">
+            <Label language="EN">Initial Delay</Label>
+            <Label language="DE">Initial Delay</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>backoffIdleThreshold</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:integer</DataType>
+        <Default></Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="62ff5094-f09d-40f8-be92-984da7e1991c">
+            <Label language="EN">Backoff Idle Threshold</Label>
+            <Label language="DE">Backoff Idle Threshold</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>useFixedDelay</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:boolean</DataType>
+        <Default>true</Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="8af41376-b940-4e14-afa7-187d72d7230d">
+            <Label language="EN">Use Fixed Delay</Label>
+            <Label language="DE">Use Fixed Delay</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>delay</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:long</DataType>
+        <Default>500</Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="54c4e9a9-4126-4a1d-b9ac-9e4096a64583">
+            <Label language="EN">Delay</Label>
+            <Label language="DE">Delay</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>startScheduler</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:boolean</DataType>
+        <Default>true</Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="87a5ca86-a3d9-4ed9-8255-c60317807e46">
+            <Label language="EN">Start Scheduler</Label>
+            <Label language="DE">Start Scheduler</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>runLoggingLevel</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:string</DataType>
+        <Default>TRACE</Default>
+        <Length></Length>
+        <isparameterized>false</isparameterized>
+        <GuiLabels guid="33838e17-c3dd-400d-b073-4cffe077ac5a">
+            <Label language="EN">Run Logging Level</Label>
+            <Label language="DE">Run Logging Level</Label>
+        </GuiLabels>
+        <FixedValues>
+            <FixedValue>
+                <Value>TRACE</Value>
+                <GuiLabels guid="d4b82c4f-c4ad-4ace-bc58-7caac2692d71">
+                    <Label language="EN">TRACE</Label>
+                    <Label language="DE">TRACE</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>ERROR</Value>
+                <GuiLabels guid="b9c33d97-8afb-48fc-b450-b24924920ce5">
+                    <Label language="EN">ERROR</Label>
+                    <Label language="DE">ERROR</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>INFO</Value>
+                <GuiLabels guid="d5d11323-6526-4c38-92ad-f982665e77cf">
+                    <Label language="EN">INFO</Label>
+                    <Label language="DE">INFO</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>DEBUG</Value>
+                <GuiLabels guid="77d1ad9d-11ad-49a8-8ac6-b2796ae0de18">
+                    <Label language="EN">DEBUG</Label>
+                    <Label language="DE">DEBUG</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>OFF</Value>
+                <GuiLabels guid="72b7cf05-229d-435a-8c1e-ccf617ae2276">
+                    <Label language="EN">OFF</Label>
+                    <Label language="DE">OFF</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>WARN</Value>
+                <GuiLabels guid="6d43cb05-4133-46c0-b30d-365e00db4b2c">
+                    <Label language="EN">WARN</Label>
+                    <Label language="DE">WARN</Label>
+                </GuiLabels>
+            </FixedValue>
+        </FixedValues>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>backoffErrorThreshold</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:integer</DataType>
+        <Default></Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="1a2e4dcb-dd9b-4e9e-a90b-6020f20a739e">
+            <Label language="EN">Backoff Error Threshold</Label>
+            <Label language="DE">Backoff Error Threshold</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>greedy</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:boolean</DataType>
+        <Default></Default>
+        <Length></Length>
+        <isparameterized>true</isparameterized>
+        <GuiLabels guid="71fb84de-26d7-4bb9-90dd-1efb3d5f9c08">
+            <Label language="EN">Greedy</Label>
+            <Label language="DE">Greedy</Label>
+        </GuiLabels>
+    </AttributeMetadata>
+    <AttributeMetadata>
+        <Name>timeUnit</Name>
+        <Usage>false</Usage>
+        <DataType>xsd:string</DataType>
+        <Default>MILLISECONDS</Default>
+        <Length></Length>
+        <isparameterized>false</isparameterized>
+        <GuiLabels guid="0f60533e-6642-4fd6-a422-5f3bb262d6cc">
+            <Label language="EN">Time Unit</Label>
+            <Label language="DE">Time Unit</Label>
+        </GuiLabels>
+        <FixedValues>
+            <FixedValue>
+                <Value>MILLISECONDS</Value>
+                <GuiLabels guid="7c2f0830-5ce5-4ea6-b629-64417953d6c0">
+                    <Label language="EN">MILLISECONDS</Label>
+                    <Label language="DE">MILLISECONDS</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>MICROSECONDS</Value>
+                <GuiLabels guid="d56c3b76-9563-42d9-9e7a-985ae3ad681e">
+                    <Label language="EN">MICROSECONDS</Label>
+                    <Label language="DE">MICROSECONDS</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>SECONDS</Value>
+                <GuiLabels guid="df07d5d8-701e-4ac7-8ae9-2fcec5f90e59">
+                    <Label language="EN">SECONDS</Label>
+                    <Label language="DE">SECONDS</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>DAYS</Value>
+                <GuiLabels guid="e7d3f340-8ad3-4677-a1c5-c93b7e10fafa">
+                    <Label language="EN">DAYS</Label>
+                    <Label language="DE">DAYS</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>NANOSECONDS</Value>
+                <GuiLabels guid="4bcdcdb3-1bed-4b86-bc67-2f2e3771d80e">
+                    <Label language="EN">NANOSECONDS</Label>
+                    <Label language="DE">NANOSECONDS</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>HOURS</Value>
+                <GuiLabels guid="08960e30-96a2-4fcf-8c66-5914dd9e534d">
+                    <Label language="EN">HOURS</Label>
+                    <Label language="DE">HOURS</Label>
+                </GuiLabels>
+            </FixedValue>
+            <FixedValue>
+                <Value>MINUTES</Value>
+                <GuiLabels guid="f069d3e7-a58f-4dc1-b711-fcaf09c2e37a">
+                    <Label language="EN">MINUTES</Label>
+                    <Label language="DE">MINUTES</Label>
+                </GuiLabels>
+            </FixedValue>
+        </FixedValues>
+    </AttributeMetadata>
+</ComponentMetadata>

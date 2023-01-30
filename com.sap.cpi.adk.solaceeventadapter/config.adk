@@ -1,0 +1,7 @@
+#Properties file
+#Wed Oct 24 10:29:34 IST 2018
+Adapter-Name=SolaceEventAdapter
+Enable-Maven=true
+Adapter-Vendor=SAP
+Adapter-ID=SolaceEventAdapter
+Adapter-Version=1.0

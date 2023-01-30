@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-Name: SolaceEventAdapter
+SAP-AdapterName: SolaceEventAdapter
+Bundle-Vendor: SAP
+Bundle-SymbolicName: SolaceEventAdapter
+Bundle-Version: 1.0
+SAP-NodeType: IFLMAP
+SAP-BundleType: IntegrationAdapter
