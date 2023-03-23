@@ -10,7 +10,7 @@
   <name>${project.artifactId}</name>
 
   <properties>
-    <camel.version>2.17.4</camel.version>
+    <camel.version>2.24.2</camel.version>
   </properties>
 
   <dependencies>
@@ -32,7 +32,7 @@
 <dependency>
     <groupId>com.solacesystems</groupId>
     <artifactId>sol-jcsmp</artifactId>
-    <version>10.4.0</version>
+      <version>10.4.0</version>
 </dependency>
 
     <!-- testing -->
@@ -56,12 +56,26 @@
       <version>1.6.1</version>
       <scope>test</scope>
     </dependency>
+    
+    <dependency>
+    <groupId>javax.resource</groupId>
+    <artifactId>javax.resource-api</artifactId>
+    <version>1.7.1</version>
+	</dependency>
+    
+    
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>1.2.16</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    <groupId>org.openmdx</groupId>
+    <artifactId>openmdx-dalvik</artifactId>
+    <version>2.17.1</version>
+	</dependency>
+        
   </dependencies>
 
   <build>
@@ -75,7 +89,7 @@
         <configuration>
           <instructions>
           <Embed-Dependency>*;scope=!provided|test</Embed-Dependency>
-         	<Import-Package>!javax.*,*;resolution:=optional</Import-Package>
+         	<Import-Package>javax.*,*;resolution:=optional</Import-Package>
            <Embed-Transitive>true</Embed-Transitive>
            </instructions>
         </configuration>
@@ -85,8 +99,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       

@@ -24,6 +24,7 @@ import org.apache.camel.impl.ScheduledPollConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.solacesystems.jcsmp.BytesMessage;
 import com.solacesystems.jcsmp.BytesXMLMessage;
 import com.solacesystems.jcsmp.JCSMPException;
 import com.solacesystems.jcsmp.JCSMPFactory;
@@ -31,6 +32,7 @@ import com.solacesystems.jcsmp.JCSMPProperties;
 import com.solacesystems.jcsmp.JCSMPSession;
 import com.solacesystems.jcsmp.TextMessage;
 import com.solacesystems.jcsmp.Topic;
+import com.solacesystems.jcsmp.XMLContentMessage;
 import com.solacesystems.jcsmp.XMLMessageConsumer;
 import com.solacesystems.jcsmp.XMLMessageListener;
 
@@ -106,8 +108,8 @@ public class SolaceEventAdapterConsumer extends ScheduledPollConsumer {
 			
 	        JCSMPProperties properties = new JCSMPProperties();
 	        properties.setProperty(JCSMPProperties.HOST, solaceHost);     // host:port
-	        properties.setProperty(JCSMPProperties.USERNAME, "admin"); // client-username
-	       properties.setProperty(JCSMPProperties.PASSWORD, "admin"); // client-password
+	        properties.setProperty(JCSMPProperties.USERNAME, "xxxxxxxxx"); // client-username
+	       properties.setProperty(JCSMPProperties.PASSWORD, "xxxxxxxxxxxxx"); // client-password
 	       properties.setProperty(JCSMPProperties.VPN_NAME,  vmr); // message-vpn
 	       session = JCSMPFactory.onlyInstance().createSession(properties);
 	        session.connect();
@@ -143,8 +145,20 @@ public class SolaceEventAdapterConsumer extends ScheduledPollConsumer {
     	            cons = session.getMessageConsumer(new XMLMessageListener() {
     	            @Override
     	            public void onReceive(BytesXMLMessage msg) {
-    	                if (msg instanceof TextMessage) {
-    	                	String recvMessage= ((TextMessage)msg).getText();
+    	            	String recvMessage =null;
+    	            	Object body = "" ;
+    	            	
+    	            	  if (msg instanceof TextMessage) {
+    	            	        body = ((TextMessage)msg).getText();
+    	            	      } else if (msg instanceof BytesMessage) {
+    	            	        BytesMessage bm = (BytesMessage)msg;
+    	            	        body = bm.getData();
+    	            	      } else if (msg instanceof XMLContentMessage) {
+    	            	        XMLContentMessage xm = (XMLContentMessage)msg;
+    	            	        body = xm.getXMLContent();
+    	            	      }
+    	            	
+    	  	                recvMessage= body.toString();
     	                	
     	                	LOG.info("Event received:"+ recvMessage);
     	                	
@@ -168,7 +182,7 @@ public class SolaceEventAdapterConsumer extends ScheduledPollConsumer {
     	    			            }
     	    			        }
     	                	
-    	                } 
+    	              
     	                   latch.countDown();  // unblock main thread
     	            }
 
