@@ -28,6 +28,28 @@
        <scope>provided</scope>
     </dependency>
     
+    <dependency>
+    <groupId>com.sap.it.public</groupId>
+    <artifactId>generic.api</artifactId>
+    <version>2.25.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/src/main/resources/com.sap.it.public.generic.api-2.25.0.jar</systemPath>
+</dependency>
+<dependency>
+    <groupId>com.sap.it.public</groupId>
+    <artifactId>adapter.api</artifactId>
+    <version>2.25.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/src/main/resources/com.sap.it.public.adapter.api-2.25.0.jar</systemPath>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.felix</groupId>
+    <artifactId>org.apache.felix.scr</artifactId>
+    <version>2.0.0</version>
+</dependency>
+
+    
     	<!-- https://mvnrepository.com/artifact/com.solacesystems/sol-jcsmp -->
 <dependency>
     <groupId>com.solacesystems</groupId>
@@ -88,7 +110,7 @@
 
         <configuration>
           <instructions>
-          <Embed-Dependency>*;scope=!provided|test</Embed-Dependency>
+          <Embed-Dependency>*;scope=!provided|test|system</Embed-Dependency>
          	<Import-Package>javax.*,*;resolution:=optional</Import-Package>
            <Embed-Transitive>true</Embed-Transitive>
            </instructions>

@@ -16,6 +16,7 @@
  */
 package com.sap.cpi.adk.solaceeventadapter;
 
+import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.camel.Exchange;
@@ -24,6 +25,11 @@ import org.apache.camel.impl.ScheduledPollConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sap.it.api.ITApiFactory;
+import com.sap.it.api.msglog.adapter.AdapterMessageLog;
+import com.sap.it.api.msglog.adapter.AdapterMessageLogFactory;
+import com.sap.it.api.msglog.adapter.AdapterTraceMessage;
+import com.sap.it.api.msglog.adapter.AdapterTraceMessageType;
 import com.solacesystems.jcsmp.BytesMessage;
 import com.solacesystems.jcsmp.BytesXMLMessage;
 import com.solacesystems.jcsmp.JCSMPException;
@@ -45,6 +51,7 @@ public class SolaceEventAdapterConsumer extends ScheduledPollConsumer {
 
     private final SolaceEventAdapterEndpoint endpoint;
     private JCSMPSession session;
+	public static AdapterMessageLogFactory adapterMessageLogFactory = null;
 
     public SolaceEventAdapterConsumer(final SolaceEventAdapterEndpoint endpoint, final Processor processor) {
         super(endpoint, processor);
@@ -87,6 +94,11 @@ public class SolaceEventAdapterConsumer extends ScheduledPollConsumer {
     
     private void initializeSession() {
 		try {
+			
+			
+			adapterMessageLogFactory = ITApiFactory.getService(AdapterMessageLogFactory.class, null);
+			
+		
 			LOG.info("Init Solace Session");
 			String solaceHost=null;
 			String vmr=null;
@@ -108,8 +120,8 @@ public class SolaceEventAdapterConsumer extends ScheduledPollConsumer {
 			
 	        JCSMPProperties properties = new JCSMPProperties();
 	        properties.setProperty(JCSMPProperties.HOST, solaceHost);     // host:port
-	        properties.setProperty(JCSMPProperties.USERNAME, "xxxxxxxxx"); // client-username
-	       properties.setProperty(JCSMPProperties.PASSWORD, "xxxxxxxxxxxxx"); // client-password
+	        properties.setProperty(JCSMPProperties.USERNAME, "xxxxxxxxxx"); // client-username
+	       properties.setProperty(JCSMPProperties.PASSWORD, "xxxxxxxxxxxxxxxx"); // client-password
 	       properties.setProperty(JCSMPProperties.VPN_NAME,  vmr); // message-vpn
 	       session = JCSMPFactory.onlyInstance().createSession(properties);
 	        session.connect();
@@ -123,7 +135,27 @@ public class SolaceEventAdapterConsumer extends ScheduledPollConsumer {
 
 	}
 	
-	
+    void writeTrace(Exchange exchange, byte[] traceData, boolean isOutbound) {
+        // replace "<adapter type>" by your adapter type!
+
+        String text = isOutbound ? "Sending SolaceEventAdapter message" : "Receiving SolaceEventAdapter message";
+        // replace "<CMD component ID of the adapter>" by your CMD component ID
+        AdapterMessageLog mplLog = adapterMessageLogFactory.getMessageLog(exchange, text, "SolaceEventAdapter",
+                UUID.randomUUID().toString());
+        if (!mplLog.isTraceActive()) {
+            return;
+        }
+        // if you have a fault inbound message then specify AdapterTraceMessageType.RECEIVER_INBOUND_FAULT,
+        // if you have a fault outbound message then specify AdapterTraceMessageType.SENDER_OUTBOUND_FAULT
+        // for synchronous adapters you may also need AdapterTraceMessageType.SENDER_OUTBOUND and AdapterTraceMessageType.RECEIVER_INBOUND
+        AdapterTraceMessageType type = isOutbound ? AdapterTraceMessageType.RECEIVER_OUTBOUND : AdapterTraceMessageType.SENDER_INBOUND;
+       
+        AdapterTraceMessage traceMessage = mplLog.createTraceMessage(type, traceData, false );//Setting isTruncated as false assuming traceData is less than 25MB.
+        // Encoding is optional, but should be set if available.
+        traceMessage.setEncoding("UTF-8");
+        // Headers are optional and do not forget to obfuscate security relevant header values.
+        mplLog.writeTrace(traceMessage);
+    }
     
     
     public void receiveMessages() {
@@ -160,7 +192,8 @@ public class SolaceEventAdapterConsumer extends ScheduledPollConsumer {
     	            	
     	  	                recvMessage= body.toString();
     	                	
-    	                	LOG.info("Event received:"+ recvMessage);
+    	                	
+    	  	       
     	                	
     	                	Exchange exchange = null;;
     	    			      	                 	
@@ -170,7 +203,10 @@ public class SolaceEventAdapterConsumer extends ScheduledPollConsumer {
 	    			      	      
     	    			    	 	 exchange.getIn().setBody(recvMessage);
     	    	    			     exchange.getOut().setBody(recvMessage);
+    	    	    			     writeTrace(exchange,  recvMessage.getBytes(), true);
     	    	    			     getProcessor().process(exchange);
+    	    	    			        	    		
+    	    	    			     
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								log.error("Failed to process exchange",e);

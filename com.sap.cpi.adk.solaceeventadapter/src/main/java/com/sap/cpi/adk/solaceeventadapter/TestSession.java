@@ -49,8 +49,8 @@ public class TestSession {
 				
 		        JCSMPProperties properties = new JCSMPProperties();
 		        properties.setProperty(JCSMPProperties.HOST, solaceHost);     // host:port
-		        properties.setProperty(JCSMPProperties.USERNAME, "xxxx"); // client-username
-		       properties.setProperty(JCSMPProperties.PASSWORD, "xxxxxx"); // client-password
+		        properties.setProperty(JCSMPProperties.USERNAME, "xxxxx"); // client-username
+		       properties.setProperty(JCSMPProperties.PASSWORD, "xxxxxxxxxxxx"); // client-password
 		       properties.setProperty(JCSMPProperties.VPN_NAME,  vmr); // message-vpn
 		       session = JCSMPFactory.onlyInstance().createSession(properties);
 		        session.connect();
